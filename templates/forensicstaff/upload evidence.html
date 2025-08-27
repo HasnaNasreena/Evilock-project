@@ -1,0 +1,103 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{% extends 'forensicstaff/index.html' %}
+{% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  table th, table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 10px;
+  }
+
+  table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+
+  .add-new {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .add-new:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<body>
+  <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Evidence Name</th>
+          <th>File</th>
+          <th>Description</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.evidencename }}</td>
+          <td><a href="{{ i.file.url }}" target="_blank">View File</a></td>
+          <td>{{ i.descripition }}</td>
+          <td>{{ i.date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" style="text-align: center; color: #555;">No evidence records available.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/forensic_addevidence" class="add-new">Add New Evidence</a>
+  </form>
+</body>
+{% endblock %}

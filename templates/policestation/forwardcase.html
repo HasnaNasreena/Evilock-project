@@ -1,0 +1,120 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Case Selection Form</title>#}
+{#</head>#}
+{% extends 'policestation/index.html' %}
+{% block body %}
+
+<body>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table td {
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  table td:first-child {
+    font-weight: bold;
+    text-align: right;
+    width: 30%;
+    padding-right: 10px;
+  }
+
+  input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<form action="/forwardcourt" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table>
+{#    <tr>#}
+{#      <td>Case</td>#}
+{#      <td>#}
+{#        <select name="sel" required>#}
+{#          <option value="" disabled selected>Select a case</option>#}
+{#          {% for i in data %}#}
+{#          <option value="{{ i.id }}">{{ i.case }}</option>#}
+{#          {% endfor %}#}
+{#        </select>#}
+{#      </td>#}
+{#    </tr>#}
+  <tr>
+    <td>Court</td>
+    <td>
+        <select name="court" required>
+            {% for i in court %}
+            <option value="{{ i.id }}">{{ i.name }}-{{ i.type }}</option>
+            {% endfor %}
+        </select>
+    </td>
+</tr>
+<tr>
+        <td colspan="2">
+            <button type="submit">Submit</button>
+        </td>
+    </tr>
+{#    <tr>#}
+{#      <td>Image</td>#}
+{#      <td><input type="file" name="file" required /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Description</td>#}
+{#      <td><input type="text" name="textfield3" placeholder="Enter description" required /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Date</td>#}
+{#      <td><input type="date" name="textfield" required value="{{ dt }}" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td colspan="2">#}
+{#        <input type="submit" name="Submit2" value="Add" />#}
+{#      </td>#}
+{#    </tr>#}
+  </table>
+</form>
+
+</body>
+{% endblock %}
+

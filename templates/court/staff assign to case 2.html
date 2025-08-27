@@ -1,0 +1,105 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{% extends 'court/index.html' %}
+{% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  form {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  select, input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  tr:last-child td {
+    text-align: center;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="/assign_staff_post">
+    <table>
+      <tr>
+        <td>Staff</td>
+        <td>
+          <label>
+            <select name="select">
+              {% for i in data %}
+                <option value="{{ i.id }}">{{ i.name }}</option>
+              {% endfor %}
+            </select>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" name="Submit" value="Assign" />
+        </td>
+      </tr>
+    </table>
+
+  <table>
+      <tr>
+          <th>#</th>
+          <th>Staff</th>
+      </tr>
+      {% for foo in p %}
+      <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ foo.STAFFID.name }}</td>
+      </tr>
+      {% endfor %}
+
+  </table>
+  </form>
+</body>
+{% endblock %}

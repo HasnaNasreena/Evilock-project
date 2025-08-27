@@ -1,0 +1,156 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{#{%  extends 'admin/regindex.html' %}#}
+{#{%  block body %}#}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/searchcasehistory">#}
+{#  <table width="748" border="1">#}
+{#    <tr>#}
+{#      <td colspan="8">&nbsp;</td>#}
+{#      <td width="11">date</td>#}
+{#      <td width="442"><label>#}
+{#        <input type="date" name="textfield" value="{{ dt }}"/>#}
+{#      </label></td>#}
+{#      <td width="137" rowspan="2"><label>#}
+{#        <input type="submit" name="Submit" value="search" />#}
+{#      </label></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td width="11">slno</td>#}
+{#      <td width="11">userid</td>#}
+{#      <td width="11">case</td>#}
+{#      <td width="11">details</td>#}
+{#      <td width="11">date</td>#}
+{#      <td width="11">status</td>#}
+{#      <td width="11">inc.place</td>#}
+{#      <td width="11">inc.pin</td>#}
+{#      <td>inc.post</td>#}
+{#      <td>inc.district</td>#}
+{#    </tr>#}
+{#      {%  for i in data %}#}
+{#    <tr>#}
+{#    <td>{{  forloop.counter }}</td>#}
+{#      <td>{{ i.USER.name }}&nbsp;</td>#}
+{#      <td>{{ i.case }}&nbsp;</td>#}
+{#      <td>{{ i.details }}&nbsp;</td>#}
+{#      <td>{{ i.date }}</td>#}
+{##}
+{#      <td>{{ i.status }}&nbsp;</td>#}
+{#      <td>{{ i.incident_place }}</td>#}
+{#      <td>{{ i.incident_pin }}&nbsp;</td>#}
+{#      <td>&nbsp;{{ i.incident_post }}</td>#}
+{#      <td>{{ i.incident_district }}&nbsp;</td>#}
+{#      <td>&nbsp;</td>#}
+{#    </tr>#}
+{#      {%  endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#{%  endblock %}#}
+{% extends 'forensicstaff/index.html' %}
+{% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .form-header {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .form-header input[type="date"] {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .form-header input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .form-header input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="/searchcasehistory">
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Evidance</th>
+          <th>Police</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Status</th>
+
+{#            <th>Action</th>#}
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.evidencename }}</td>
+          <td>{{ i.POLICE.stationname }}</td>
+          <td>{{ i.descripition }}</td>
+          <td>{{ i.date }}</td>
+
+            <td><a href="{{ i.evidencename.url }}" doenload>Download</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="10" style="text-align: center;">No Evidance history found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</body>
+{% endblock %}

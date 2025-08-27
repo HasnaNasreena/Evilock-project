@@ -1,0 +1,126 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Case Selection Form</title>#}
+{#</head>#}
+{#{% extends 'policestation/index.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#<form action="/editpolicestationpost" method="post" enctype="multipart/form-data" name="form1" id="form1">#}
+{#  <table width="200" border="1">#}
+{#      <tr><td>Case</td><td><select name="sel">#}
+{#          {% for i in data %}#}
+{#              <option  {%  if i.id == evidence.CASEID.id %} selected {% endif %}value="{{ i.id }}">{{ i.case }}#}
+{# </option>#}
+{#          {% endfor %}#}
+{#     </select></td></tr>#}
+{#    <tr>#}
+{#          <tr>#}
+{#            <td>Case</td>#}
+{#            <td>Details</td>#}
+{#            <td>Select</td>#}
+{#          </tr>#}
+{#          <tr>#}
+{#            <td>Case 1</td>#}
+{#            <td>Details about Case 1</td>#}
+{#            <td><input type="radio" name="case_radio" value="case1" /></td>#}
+{#          </tr>#}
+{#          <tr>#}
+{#            <td>Case 2</td>#}
+{#            <td>Details about Case 2</td>#}
+{#            <td><input type="radio" name="case_radio" value="case2" /></td>#}
+{#          </tr>#}
+{#          <tr>#}
+{#            <td>Case 3</td>#}
+{#            <td>Details about Case 3</td>#}
+{#            <td><input type="radio" name="case_radio" value="case3" /></td>#}
+{#          </tr>#}
+{#        </table>#}
+{#      </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Evidence Name</td>#}
+{#      <td><input type="text" name="textfield2" required value="{{ evidence.evidencename }}"/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Previous Image</td>#}
+{#      <td><img src="{{ evidence.photo.url }}" height="80" width="60"> </td>#}
+{#    </tr>#}
+{#  <tr>#}
+{#      <td>Image</td>#}
+{#      <td><input type="file" name="file"></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Description</td>#}
+{#      <td><input type="text" name="textfield3" required  value="{{ evidence.descripition }}" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Date</td>#}
+{#    <td><label>#}
+{#        <input type="date" name="textfield" required   value="{{ evidence.date|date:'Y-m-d' }}"/>#}
+{#    </label></td></tr>#}
+{#    <tr>#}
+{#      <td colspan="2">#}
+{#        <input type="submit" name="Submit2" value="edit" />#}
+{#      </td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+{% extends 'policestation/index.html' %}
+{% block body %}
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3>Case Selection Form</h3>
+        </div>
+        <div class="card-body">
+            <form action="/editpolicestationpost" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                <div class="mb-3">
+                    <label for="sel" class="form-label">Case</label>
+                    <select name="sel" class="form-select">
+                        {% for i in data %}
+                            <option {% if i.id == evidence.CASEID.id %} selected {% endif %} value="{{ i.id }}">{{ i.case }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Evidence Name</label>
+                    <input type="text" name="textfield2" class="form-control" required value="{{ evidence.evidencename }}"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Previous Image</label><br>
+                    <img src="{{ evidence.photo.url }}" class="img-thumbnail" height="80" width="60">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Upload New Image</label>
+                    <input type="file" name="file" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" name="textfield3" class="form-control" required value="{{ evidence.descripition }}" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Date</label>
+                    <input type="date" name="textfield" class="form-control" required value="{{ evidence.date|date:'Y-m-d' }}"/>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</body>
+{% endblock %}

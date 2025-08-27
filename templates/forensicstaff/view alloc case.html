@@ -1,0 +1,103 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{% extends 'forensicstaff/index.html' %}
+{% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 10px;
+    vertical-align: middle;
+  }
+
+  table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+
+  .empty-row {
+    text-align: center;
+    color: #555;
+    font-size: 16px;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="">
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Staff ID</th>
+          <th>Case Info</th>
+          <th>Date</th>
+          <th>Status</th>
+            <th>Evidance</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.STAFFID.name }}</td>
+          <td>{{ i.CASEID.case }}</td>
+          <td>{{ i.date }}</td>
+          <td>{{ i.status }}</td>
+          <td>
+            <a href="forensicstaff_view_uploadevidence_police/{{ i.CASEID.id }}">Police Evidence</a>
+          </td> <td>
+            <a href="forensicstaff_uploadevidence/{{ i.CASEID.id }}">Add Evidence</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="empty-row">No cases available for this staff.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</body>
+{% endblock %}

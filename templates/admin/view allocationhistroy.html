@@ -1,0 +1,164 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{#{%  extends 'admin/regindex.html' %}#}
+{#{%  block body %}#}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/searchallocationhistory">#}
+{#  <table width="200" border="1">#}
+{#    <tr>#}
+{#      <td colspan="3">&nbsp;</td>#}
+{#      <td>date</td>#}
+{#      <td><label>#}
+{#        <input type="date" name="textfield"   value="{{ dt }}"/>#}
+{#      </label></td>#}
+{#      <td><label>#}
+{#        <input type="submit" name="Submit" value="search" />#}
+{#      </label></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>slno</td>#}
+{#      <td>staff </td>#}
+{#      <td>case  </td>#}
+{#      <td>date</td>#}
+{#      <td>status</td>#}
+{##}
+{#    </tr>#}
+{##}
+{#      {% for i in data %}#}
+{#          <tr>#}
+{#    <td>{{ forloop.counter }}</td>#}
+{##}
+{#      <td>{{ i.STAFFID.name }}&nbsp;&nbsp;</td>#}
+{#      <td>{{ i.CASEID.case}}<br>{{ i.CASEID.details }}<br>{{i.CASEID.date  }}<br>{{ i.CASEID.status }}<br>{{ i.CASEID.incident_place }}<br>{{ i.CASEID.incident_pin }}<br>{{ i.CASEID.incident_post }}<br>{{ i.CASEID.incident_district }}</td>#}
+{#      <td>{{ i.date }}&nbsp;&nbsp;</td>#}
+{#      <td>{{ i.status }}&nbsp;&nbsp;</td>#}
+{##}
+{#    </tr>#}
+{#       {%  endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{#{%  endblock %}#}
+{% extends 'admin/index2.html' %}
+{% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+    vertical-align: top;
+  }
+
+  table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .form-header {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .form-header input[type="date"],
+  .form-header input[type="submit"] {
+    padding: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .form-header input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .form-header input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .case-details {
+    line-height: 1.5;
+    font-size: 14px;
+    color: #333;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="/searchallocationhistory">
+    <div class="form-header">
+      <label for="date">Date:</label>
+      <input type="date" name="textfield" value="{{ dt }}" id="date" />
+      <input type="submit" name="Submit" value="Search" />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Staff</th>
+          <th>Case</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.STAFFID.name }}</td>
+          <td class="case-details">
+            <strong>Case:</strong> {{ i.CASEID.case }}<br>
+            <strong>Details:</strong> {{ i.CASEID.details }}<br>
+            <strong>Date:</strong> {{ i.CASEID.date }}<br>
+            <strong>Status:</strong> {{ i.CASEID.status }}<br>
+            <strong>Place:</strong> {{ i.CASEID.incident_place }}<br>
+            <strong>Pin:</strong> {{ i.CASEID.incident_pin }}<br>
+            <strong>Post:</strong> {{ i.CASEID.incident_post }}<br>
+            <strong>District:</strong> {{ i.CASEID.incident_district }}
+          </td>
+          <td>{{ i.date }}</td>
+          <td>{{ i.status }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" style="text-align: center;">No allocation history found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</body>
+{% endblock %}

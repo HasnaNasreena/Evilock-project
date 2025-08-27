@@ -1,0 +1,33 @@
+
+
+{% extends 'policestation/index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecasted Cases</title>
+</head>
+<body>
+    <h1>Forecasted Cases for the Next Year</h1>
+
+    <!-- Display the graph -->
+    <img src="data:image/png;base64,{{ graph }}" alt="Forecasted Cases">
+
+    <!-- Optionally display the forecasted data as a table -->
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Predicted Cases</th>
+        </tr>
+        {% for case in forecasted_cases %}
+        <tr>
+            <td>{{ case.ds }}</td>
+            <td>{{ case.yhat }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+{% endblock %}

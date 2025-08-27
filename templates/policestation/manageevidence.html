@@ -1,0 +1,168 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{% extends 'policestation/index.html' %}
+{% block body %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #004085;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  a {
+    color: #004085;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  form {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #004085;
+  }
+</style>
+
+{#<body>#}
+{#  <h1>Manage Evidence Records</h1>#}
+{#  <form id="form1" name="form1" method="post" action="/editpolicestationpost">#}
+{#    <table>#}
+{#      <tr>#}
+{##}
+{#        <th>Case</th>#}
+{#        <th>Evidence Name</th>#}
+{#        <th>Image</th>#}
+{#        <th>Description</th>#}
+{#        <th>Date</th>#}
+{#        <th colspan="2">Actions</th>#}
+{#      </tr>#}
+{#      {% for i in data %}#}
+{#      <tr>#}
+{##}
+{#        <td>{{ i.CASEID.case }}</td>#}
+{#        <td>{{ i.evidencename }}</td>#}
+{#        <td><a href="{{ i.photo.url }}" download target="_blank">Download</a></td>#}
+{#        <td>{{ i.descripition }}</td>#}
+{#        <td>{{ i.date }}</td>#}
+{#        <td><a href="/editpolicestation/{{ i.id }}">Edit</a></td>#}
+{#        <td><a href="/delete_manageevidence/{{ i.id }}">Delete</a></td>#}
+{#      </tr>#}
+{#      {% endfor %}#}
+{#     {% for i in data1 %}#}
+{#        <tr>#}
+{##}
+{#          <td>{{ i.ALLOCID.CASEID.case }}</td>#}
+{#          <td>{{ i.evidencename }}</td>#}
+{#               <td><a href="{{ i.file.url }}" doenload target="_blank">Download</a></td>#}
+{##}
+{#          <td>{{ i.descripition }}</td>#}
+{#          <td>{{ i.date }}</td>#}
+{#        <td>Evidanse added by{{ i.ALLOCID.STAFFID.name }}</td>#}
+{##}
+{##}
+{#        </tr>#}
+{##}
+{##}
+{#        {% endfor %}#}
+{#      <tr>#}
+{#        <td colspan="8" style="text-align: center;"><a href="/policestation_addnewevidence">Add New Evidence</a></td>#}
+{#      </tr>#}
+{#    </table>#}
+{#  </form>#}
+{#</body>#}
+{#{% endblock %}#}
+<body>
+  <h1>Manage Evidence Records</h1>
+  <form id="form1" name="form1" method="post" action="/editpolicestationpost">
+    <table>
+      <tr>
+
+        <th>User name</th>
+        <th>Case</th>
+        <th>Evidence Name</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      {% for i in data %}
+      <tr>
+
+        <td>{{ i.CASEID.USER.name }}</td>
+        <td>{{ i.CASEID.case }}</td>
+        <td>{{ i.evidencename }}</td>
+        <td><a href="{{ i.photo.url }}" download target="_blank">Download</a></td>
+        <td>{{ i.descripition }}</td>
+        <td>{{ i.date }}</td>
+        <td>Evidanse added by:{{ i.POLICE.stationname }}</td>
+{#        <td><a href="/editpolicestation/{{ i.id }}">Edit</a></td>#}
+{#        <td><a href="/delete_manageevidence/{{ i.id }}">Delete</a></td>#}
+      </tr>
+      {% endfor %}
+     {% for i in data1 %}
+        <tr>
+
+          <td>{{ i.ALLOCID.CASEID.USER.name }}</td>
+          <td>{{ i.ALLOCID.CASEID.case }}</td>
+          <td>{{ i.evidencename }}</td>
+               <td><a href="{{ i.file.url }}" doenload target="_blank">Download</a></td>
+
+          <td>{{ i.descripition }}</td>
+          <td>{{ i.date }}</td>
+        <td>Evidance added by:{{ i.ALLOCID.STAFFID.name }}</td>
+
+
+        </tr>
+
+
+        {% endfor %}
+      <tr>
+        <td colspan="8" style="text-align: center;"><a href="/policestation_addnewevidence">Add New Evidence</a></td>
+      </tr>
+    </table>
+  </form>
+</body>
+{% endblock %}

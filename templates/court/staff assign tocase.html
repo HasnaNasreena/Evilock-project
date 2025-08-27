@@ -1,0 +1,98 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{% extends 'court/index.html' %}
+{% block body %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  td:last-child {
+    text-align: center;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="">
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Case</th>
+          <th>Details</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Incident Place</th>
+          <th>Incident Pin</th>
+          <th>Incident Post</th>
+          <th>Incident District</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.case }}</td>
+          <td>{{ i.details }}</td>
+          <td>{{ i.date }}</td>
+          <td>{{ i.status }}</td>
+          <td>{{ i.incident_place }}</td>
+          <td>{{ i.incident_pin }}</td>
+          <td>{{ i.incident_post }}</td>
+          <td>{{ i.incident_district }}</td>
+          <td><a href="/assign_staff/{{ i.id }}">Assign</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</body>
+
+{% endblock %}
+
+

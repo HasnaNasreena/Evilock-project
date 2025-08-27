@@ -1,0 +1,130 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{% extends 'court/index.html' %}
+{% block body %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  td:last-child {
+    text-align: center;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="/court_verify_policestation">
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Station Name</th>
+          <th>Place</th>
+          <th>Pin</th>
+          <th>Post</th>
+          <th>District</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Landmark</th>
+          <th colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.stationname }}</td>
+          <td>{{ i.place }}</td>
+          <td>{{ i.pin }}</td>
+          <td>{{ i.post }}</td>
+          <td>{{ i.district }}</td>
+          <td>{{ i.phone }}</td>
+          <td>{{ i.email }}</td>
+          <td>{{ i.landmark }}</td>
+{#          <td><a href="/acceptpolicestation/{{ i.id }}">Accept</a></td>#}
+{#          <td><a href="/rejectpolicestation/{{ i.id }}">Reject</a></td>#}
+{##}
+{#        <td class="action-links">#}
+{#            {% if i.LOGIN.type == "pending" %}#}
+{#              <p><a href="/acceptpolicestation/{{ i.LOGIN.id }}">Accept</a></p>#}
+{#              <p><a href="/rejectpolicestation/{{ i.LOGIN.id }}">Reject</a></p>#}
+{#            {% elif i.LOGIN.type == "policestation" %}#}
+{#              <p><a href="/rejectpolicestation/{{ i.LOGIN.id }}">Reject</a></p>#}
+{##}
+{#            {% else %}#}
+{#              <p><a href="/acceptpolicestation/{{ i.LOGIN.id }}">Accept</a></p>#}
+{#            {% endif %}#}
+{#          </td>#}
+            <td class="action-links">
+    {% if i.LOGIN.type == "pending" %}
+        <p><a href="/acceptpolicestation/{{ i.LOGIN.id }}">Accept</a></p>
+        <p><a href="/rejectpolicestation/{{ i.LOGIN.id }}">Reject</a></p>
+    {% elif i.LOGIN.type == "police" %}
+        <p><a href="/rejectpolicestation/{{ i.LOGIN.id }}">Reject</a></p>
+    {% else %}
+        <p><a href="/acceptpolicestation/{{ i.LOGIN.id }}">Accept</a></p>
+    {% endif %}
+</td>
+
+        </tr>
+            {% empty %}
+        <tr>
+          <td colspan="6" style="text-align: center;">No staff records found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</body>
+
+{% endblock %}

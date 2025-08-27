@@ -1,0 +1,151 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{#{%  extends 'admin/regindex.html' %}#}
+{#{%  block body %}#}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#  <table width="406" border="1">#}
+{#    <tr>#}
+{#      <td width="27">slno</td>#}
+{#      <td width="45">name</td>#}
+{#      <td width="54">address</td>#}
+{#      <td width="51">contact</td>#}
+{#      <td width="27">email</td>#}
+{#      <td width="78">court type</td>#}
+{#      <td width="78">&nbsp;</td>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr><td>{{ forloop.counter }}</td>#}
+{#      <td>{{ i.name }}&nbsp;</td>#}
+{#      <td>{{ i.place }},{{ i.pin }},{{ i.post }}&nbsp;</td>#}
+{#      <td>{{ i.phone }}&nbsp;</td>#}
+{#      <td>{{ i.email }}&nbsp;</td>#}
+{#        <td>{{ i.type }}&nbsp;</td>#}
+{#        <td><a href="/editcourt/{{ i.id }}">edit</a></td>#}
+{#      <td><a href="/delete/{{ i.id }}">delete</a></td>#}
+{#    </tr>#}
+{#      {%  endfor %}#}
+{#    <tr>#}
+{#      <td colspan="7"><a href="#"></a><a href="/admin_add_court">addnew</a></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#{%  endblock %}#}
+{##}
+{% extends 'admin/index2.html' %}
+{% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+
+  .action-links a {
+    margin-right: 10px;
+  }
+
+  .add-new {
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .add-new:hover {
+    background-color: #218838;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="">
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Contact</th>
+          <th>Email</th>
+          <th>District</th>
+          <th>Court Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.name }}</td>
+          <td>{{ i.place }}, {{ i.pin }}, {{ i.post }}</td>
+          <td>{{ i.phone }}</td>
+          <td>{{ i.email }}</td>
+          <td>{{ i.district }}</td>
+          <td>{{ i.type }}</td>
+          <td class="action-links">
+            <a href="/editcourt/{{ i.id }}">Edit</a>
+            <a href="/delete/{{ i.id }}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="7">
+            <a href="/admin_add_court" class="add-new">Add New</a>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+</body>
+{% endblock %}

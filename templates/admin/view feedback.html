@@ -1,0 +1,152 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{#{%  extends 'admin/regindex.html' %}#}
+{#{%  block body %}#}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/searchFeedback">#}
+{#  <table width="200" border="1">#}
+{#    <tr>#}
+{#      <td>&nbsp;</td>#}
+{#      <td>&nbsp;</td>#}
+{#      <td>date</td>#}
+{#      <td><label>#}
+{#        <input type="date" name="textfield"  value="{{ dt }}"/>#}
+{#      </label></td>#}
+{#      <td rowspan="2"><label>#}
+{#        <input type="submit" name="Submit" value="search" />#}
+{#      </label></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>slno</td>#}
+{#      <td>description</td>#}
+{#      <td>date</td>#}
+{#      <td>userinfo</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#         {% for i in data %}#}
+{#      <td>{{ i.date }}&nbsp;</td>#}
+{#     <td>{{ i.feedback }}&nbsp;</td>#}
+{#      <td>{{ i.date }}</td>#}
+{#      <td>{{ i.userinfo }}&nbsp;</td>#}
+{##}
+{#    </tr>#}
+{#      {%  endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{#{%  endblock %}#}
+{% extends 'admin/index2.html' %}
+{% block body %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 10px;
+    vertical-align: middle;
+  }
+
+  table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .form-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .form-header input[type="date"],
+  .form-header input[type="submit"] {
+    padding: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .form-header input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .form-header input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .empty-row {
+    text-align: center;
+    color: #555;
+    font-size: 16px;
+  }
+</style>
+
+<body>
+  <form id="form1" name="form1" method="post" action="/searchFeedback">
+    <div class="form-header">
+      <label for="date">Date:</label>
+      <input type="date" name="textfield" value="{{ dt }}" id="date" />
+      <input type="submit" name="Submit" value="Search" />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Description</th>
+          <th>Date</th>
+            <th>rating</th>
+          <th>User Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.feedback }}</td>
+          <td>{{ i.date }}</td>
+            <td>{{ i.rating }}</td>
+          <td>{{ i.USER.name }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4" class="empty-row">No feedback records found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+</body>
+{% endblock %}

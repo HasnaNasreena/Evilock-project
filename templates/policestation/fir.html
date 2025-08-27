@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FIR Browser & Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      padding: 30px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .fir-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .fir-list li {
+      background: #f9f9f9;
+      padding: 12px 18px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      border-radius: 6px;
+    }
+    .upload-form {
+      margin-top: 20px;
+    }
+    input[type="file"] {
+      display: block;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>FIR Browser & Upload</h1>
+
+    <!-- FIR Browsing Section -->
+
+
+    <!-- Upload Section -->
+    <div class="section upload-form">
+      <h2>📤 Upload New FIR</h2>
+      <form action="/firrequest" method="post" enctype="multipart/form-data">
+        <label for="firFile">Choose FIR file (PDF, DOCX):</label>
+        <input type="file" id="firFile" name="firFile"  required>
+        <button type="submit">Upload FIR</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

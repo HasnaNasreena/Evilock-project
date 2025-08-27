@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% block body %}
+<html>
+<head><title>registration form</title>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="/regg">
+  <div align="center">
+    <p>Registration Form</p>
+    <table width="200" border="0" >
+      <tr>
+        <td>first Name</td>
+        <td><label for="textfield"></label>
+        <input type="text" name="textfield" id="textfield1" required pattern="[A-Z a-z.]{3,25}" /></td>
+      </tr>
+       <tr>
+        <td>Last Name</td>
+        <td><label for="textfield1"></label>
+        <input type="text" name="textfield1" id="textfield" required pattern="[A-Z a-z.]{3,25}" /></td>
+      </tr>
+      <tr>
+        <td>dob</td>
+        <td><label for="textfield2"></label>
+        <input type="date" name="textfield2" id="textfield2" min="1990-01-01" max="2019-12-31" required /></td>
+      </tr>
+<tr>
+<td>gender</td>
+<td><input type="radio" name="r1" value="male" checked>male
+<input type="radio" name="r1" value="female">female</td></tr>
+      <tr>
+<tr>
+<td>district</td>
+<td><select name="select1" required>
+<option value="">select</option>
+     <option value="clt">clt</option>
+<option value="knr">knr</option>
+</select></td></tr>
+        <td>House Name </td>
+        <td><label for="textfield3"></label>
+        <input type="text" name="textfield3" id="textfield3" pattern="[A-Z a-z.]{3,25}" /></td>
+      </tr>
+      <tr>
+        <td>Place</td>
+        <td><label for="textfield4"></label>
+        <input type="text" name="textfield4" id="textfield4" pattern="[A-Z a-z.]{3,25}"/></td>
+      </tr>
+      <tr>
+        <td>Post</td>
+        <td><label for="textfield5"></label>
+        <input type="text" name="textfield5" id="textfield5"  pattern="[A-Z a-z.]{3,25}"/></td>
+      </tr>
+      <tr>
+        <td>Pin</td>
+        <td><label for="textfield6"></label>
+        <input type="text" name="textfield6" id="textfield6" required pattern="[0-9]{6}"/></td>
+      </tr>
+      <tr>
+        <td>Phone Number</td>
+        <td><label for="textfield7"></label>
+        <input type="text" name="textfield7" id="textfield7" required pattern="[6789][0-9]{9}"/></td>
+      </tr>
+      <tr>
+        <td>Email Id</td>
+        <td><label for="textfield8"></label>
+        <input type="text" name="textfield8" id="textfield8"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}"/></td>
+      </tr>
+ <tr>
+        <td>Password</td>
+        <td><label for="textfield9"></label>
+        <input type="password" name="textfield9" id="textfield9"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required /></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><input type="submit" name="button" id="button" value="SignUp" /></td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+  </div>
+</form>
+{% endblock %}
